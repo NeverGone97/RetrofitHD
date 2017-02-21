@@ -9,6 +9,7 @@ import android.widget.ListView;
 import com.example.nut_it.retrofithd.R;
 import com.example.nut_it.retrofithd.api.model.GitHubRepo;
 import com.example.nut_it.retrofithd.api.service.GitHubClient;
+import com.example.nut_it.retrofithd.ui.adapter.GitHubRepoAdapter;
 
 import java.util.List;
 
@@ -34,8 +35,7 @@ private ListView listView;
             @Override
             public void onResponse(retrofit2.Call<List<GitHubRepo>> call, Response<List<GitHubRepo>> response) {
                 List<GitHubRepo> repos=response.body();
-                ArrayAdapter<GitHubRepo> adapter=new ArrayAdapter<GitHubRepo>(MainActivity.this,android.R.layout.simple_list_item_1,repos);
-                listView.setAdapter(adapter);
+                listView.setAdapter(new GitHubRepoAdapter(MainActivity.this,repos));
             }
 
             @Override
